@@ -2,22 +2,25 @@
 
 namespace App\Models;
 
+use App\Traits\MustVerifyMobile;
+use App\Interfaces\MustVerifyMobile as IMustVerifyMobile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject , IMustVerifyMobile
 {
     use HasFactory, Notifiable;
-
+    use MustVerifyMobile;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone' ,'image' , 'user_type'
+        'name', 'email', 'password', 'phone' ,'image' , 'user_type' , 'verified_code'
     ];
 
     /**

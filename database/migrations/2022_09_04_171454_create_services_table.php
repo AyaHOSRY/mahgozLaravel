@@ -28,6 +28,8 @@ class CreateServicesTable extends Migration
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->date('date_from');
+            $table->date('date_to');
             $table->timestamps();
         });
     }
