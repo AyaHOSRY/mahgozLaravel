@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Review;
 use App\Models\Size;
 use App\Models\Favorite;
+use App\Models\Image;
+
 
 class Service extends Model
 {
@@ -21,16 +23,23 @@ class Service extends Model
         return $this->belongsTo(Category::class);
     }
     //
+    public function sizes()
+    {
+      return $this->belongsToMany(Size::class, 'service_size', 'service_id' , 'size_id');
+    }
+    
+    //
+    public function images()
+    {
+      return $this->hasMany(Image::class);
+    }  
+    //
     public function reviews()
     {
       return $this->hasMany(Review::class);
     }
     //
-    public function sizes()
-    {
-      return $this->belongsToMany(Size::class, 'service_size', 'service_id' , 'size_id');
-    }
-    //
+    
     public function favorites()
     {
       return $this->hasMany(Favorite::class);
