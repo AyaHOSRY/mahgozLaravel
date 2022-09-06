@@ -4,7 +4,7 @@ namespace App\Traits;
 
 trait MustVerifyMobile 
 {
-    public function hasVerifiedMobile(): bool
+  /*  public function hasVerifiedMobile(): bool
     {
         return ! is_null($this->mobile_verified_at);
     }
@@ -14,7 +14,7 @@ trait MustVerifyMobile
         return $this->forceFill([
             'mobile_verified_at'=> $this->freshTimestamp()
         ])->save();
-    }
+    }*/
 
     public function sendMobileVerificationNotification(): void
     {
