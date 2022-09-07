@@ -16,6 +16,7 @@ class Service extends Model
     use HasFactory;
     protected $fillable = [
         'name', 'price', 'description', 'count', 'rate', 'discount', 'size_id', 'category_id', 'area' ,'lat', 'long'
+        , 'date_from', 'date_to'
     ];
     //
     public function category()

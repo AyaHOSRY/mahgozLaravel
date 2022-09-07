@@ -4,6 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SizeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CommunicationController;
+use App\Http\Controllers\ComplainationController;
 use App\Http\Middleware\SetLocale;
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +38,9 @@ Route::middleware(['auth:api', 'SetLocal'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
 
 });
-
+Route::apiResource('/sizes', SizeController::class);
+Route::apiResource('/categories', CategoryController::class);
+Route::apiResource('/services', ServiceController::class);
+Route::apiResource('/communications', CommunicationController::class);
+Route::apiResource('/complainations', ComplainationController::class);
 });

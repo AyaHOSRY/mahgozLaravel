@@ -22,14 +22,14 @@ class CreateServicesTable extends Migration
             $table->integer('rate')->nullable();
             $table->string('discount')->nullable();
             $table->string('area')->nullable();
-            $table->decimal('long', 10, 7)->nullable();
-            $table->decimal('lat', 10, 7)->nullable();
+            $table->decimal('long', 9, 6)->nullable();
+            $table->decimal('lat', 8, 6)->nullable();
             $table->unsignedBigInteger('size_id')->nullable();
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->date('date_from');
-            $table->date('date_to');
+            $table->date('date_from')->nullable();
+            $table->date('date_to')->nullable();
             $table->timestamps();
         });
     }

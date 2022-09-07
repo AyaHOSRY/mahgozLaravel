@@ -16,6 +16,11 @@ class CustomerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (auth('api')->check()&& auth('api')->user()->user_type == 'customer' ){
+            return $next($request);
+        }else{
+            return response()->json(['status'=>'fail',
+            'message'=>'not allowed'],401);
+        }
     }
 }

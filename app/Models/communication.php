@@ -10,6 +10,6 @@ class Communication extends Model
     use HasFactory;
 
     protected $fillable= [
-        'phone', 'email', 'whatsup' , 'facebook' , 'twitter' , 'instgram'
+        'phone', 'email', 'whatsup' , 'facebpok' , 'twitter' , 'instgram'
    ];
 }
