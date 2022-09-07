@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login','register', 'verifyCode']]);
     }
 
     public function register(Request $request)
@@ -91,11 +91,22 @@ class AuthController extends Controller
     }
 
 
-    public function confirm(Request $request)
+    public function verifyCode(Request $request)
     {
-        $user = User::where(['phone'=>$request->phone]);
+       /* $validator = Validator::make($request->all(), [
+            'phone' => 'required|regex:/(01)[0-9]{9}/',
+            'code' => 'required|int|min:6'
+        ]);
+
+
+        
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }*/
+        $user = User::where(['phone'=>$request->phone])->first();
+       
         if (! $user) {
-            return response()->json(['status' => 'fail','data'=> null ]);
+            return response()->json(['status' => 'fail','message'=> 'not found user' ]);
         }elseif ($user->verified_code == $request->code) {
         return response()->json(['status' => 'success',
         'message'=>'verified code is correct man']);
